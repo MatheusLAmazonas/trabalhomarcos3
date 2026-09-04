@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Pessoa Física</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
+    label { display:block; margin-top:15px; font-weight:bold; }
+    input { width:100%; padding:10px; margin-top:5px; box-sizing:border-box; }
+    button { margin-top:20px; padding:12px 20px; cursor:pointer; }
+    #resultado { margin-top:20px; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Cadastro de Pessoa Física</h1>
+
+  <form id="cadastroForm">
+    <label>Nome
+      <input id="nome" name="nome" required>
+    </label>
+
+    <label>CPF
+      <input id="cpf" name="cpf" placeholder="000.000.000-00" required>
+    </label>
+
+    <label>E-mail
+      <input id="email" name="email" type="email" required>
+    </label>
+
+    <label>Data de nascimento
+      <input id="data_nascimento" name="data_nascimento" type="date" required>
+    </label>
+
+    <label>
+      <input id="possui_cnh" name="possui_cnh" type="checkbox" style="width:auto">
+      Possui CNH
+    </label>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script src="pessoaFisica.js"></script>
+  <script>
+    document.getElementById("cadastroForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      try {
+        const dados = {
+          nome: document.getElementById("nome").value,
+          cpf: document.getElementById("cpf").value,
+          email: document.getElementById("email").value,
+          data_nascimento: document.getElementById("data_nascimento").value,
+          possui_cnh: document.getElementById("possui_cnh").checked
+        };
+
+        validarPessoaFisica(dados);
+        document.getElementById("resultado").textContent = "Cadastro válido!";
+      } catch (erro) {
+        document.getElementById("resultado").textContent = erro.message;
+      }
+    });
+  </script>
+</body>
+</html>
