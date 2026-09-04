@@ -99,7 +99,7 @@ function validarPessoaFisica(dados) {
   return true;
 }
 
-if (typeof module !== "undefined") {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     DadosInvalidosError,
     validarCPF,
@@ -107,4 +107,9 @@ if (typeof module !== "undefined") {
     validarDataNascimento,
     validarPessoaFisica
   };
+}
+
+// Disponibiliza a função no navegador
+if (typeof window !== "undefined") {
+  window.validarPessoaFisica = validarPessoaFisica;
 }
