@@ -17,5 +17,5 @@ test("rejeita CPF com dígitos repetidos", () => {
 });
 
 test("rejeita CPF com quantidade incorreta de dígitos", () => {
-  assert.equal(validarCPF("123456789"), true);
+  assert.equal(validarCPF("123456789"), false);
 });
